@@ -4,13 +4,6 @@ from sklearn.metrics import accuracy_score
 import numpy as np
 from collections import namedtuple
 
-# class ReIterator:
-#     def __init__(self, iterator_factory):
-#         self.iterator_factory = iterator_factory
-
-#     def __iter__(self):
-#         return self.iterator_factory()
-
 class Bootstrap:
 
     def __init__(
@@ -31,7 +24,7 @@ class Bootstrap:
 
         sampler = []
         sample = namedtuple('Sample', 'insample outsample')
-        for i in range(self.numRounds):
+        for _ in range(self.numRounds):
             if self.randomState is not None:
                 self.randomState += 1
 
@@ -45,29 +38,6 @@ class Bootstrap:
             sampler.append(sample(list(insample), list(outsample)))
 
         return sampler
-
-
-# def bootstrap(numRows, randomState=None, size=0.8, numRounds=5):
-    
-#     numSamples = int(numRows*size)
-#     indices = np.arange(numRows)
-    
-#     sampler = []
-#     sample = namedtuple('Sample', 'insample outsample')
-#     for i in range(numRounds):
-#         if randomState is not None:
-#             randomState += i
-
-#         insample = resample(
-#             indices, 
-#             n_samples = numSamples, 
-#             random_state = randomState
-#         )
-#         outsample = set(indices) - set(insample)
-        
-#         sampler.append(sample(list(insample), list(outsample)))
-        
-#     return sampler
 
 def get_loss(
     X,
