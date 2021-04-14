@@ -1,3 +1,0 @@
-
-class BaseScorer:
-    pass
